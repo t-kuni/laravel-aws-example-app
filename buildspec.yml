@@ -9,4 +9,13 @@ phases:
       - composer install
 artifacts:
   files:
-    - 'app'
+    - '*'
+    - 'app/**/*'
+    - 'bootstrap/**/*'
+    - 'config/**/*'
+    - 'database/**/*'
+    - 'public/**/*'
+    - 'resources/**/*'
+    - 'routes/**/*'
+    - 'storage/**/*'
+    - 'vendor/**/*'
