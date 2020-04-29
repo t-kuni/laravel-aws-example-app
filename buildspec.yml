@@ -14,7 +14,7 @@ artifacts:
     - 'bootstrap/**/*'
     - 'config/**/*'
     - 'database/**/*'
-#    - 'public/**/*'
+    - 'public/**/*'
     - 'resources/**/*'
     - 'routes/**/*'
     - 'storage/**/*'
