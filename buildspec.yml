@@ -9,4 +9,4 @@ phases:
       - composer install
 artifacts:
   files:
-    - '*'
+    - 'app'
