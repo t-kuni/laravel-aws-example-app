@@ -104,6 +104,10 @@
                     <input type="text" name="name" value="{{$item->name}}" />
                     <button type="submit">更新</button>
                 </form>
+
+                <div>
+                    Elapsed Time: {{$item->elapsed_time}} minute.
+                </div>
             </div>
         </div>
     </body>

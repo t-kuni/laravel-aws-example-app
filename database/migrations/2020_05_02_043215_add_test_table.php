@@ -17,6 +17,7 @@ class AddTestTable extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->integer('elapsed_time')->default(0);
             $table->timestamps();
         });
     }
