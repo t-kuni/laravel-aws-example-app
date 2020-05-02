@@ -42,10 +42,13 @@ class CountUpElapsedTimeCommand extends Command
         $item = Item::find(1);
 
         if ($item === null) {
+            echo "item is null\n";
             return;
         }
 
         $item->elapsed_time++;
         $item->save();
+
+        echo "count up elapsed time.";
     }
 }
