@@ -94,6 +94,16 @@
                     <a href="https://vapor.laravel.com">Vapor</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
+
+                <p>
+                    {{$item->name}}
+                </p>
+
+                <form method="POST" action="{{ action('TopController@post') }}">
+                    <input type="hidden" name="_token" value="{{csrf_token()}}" />
+                    <input type="text" name="name" value="{{$item->name}}" />
+                    <button type="submit">更新</button>
+                </form>
             </div>
         </div>
     </body>
