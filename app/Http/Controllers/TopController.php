@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class TopController extends Controller
 {
@@ -26,6 +27,20 @@ class TopController extends Controller
 
     private function getItem(): Item
     {
-        return Item::firstOrCreate(['id' => 1], ['name' => 'AWSでLaravelのインフラを作る']);
+        return Item::firstOrCreate(['id' => 1], [
+            'name' => 'AWSでLaravelのインフラを作る',
+            'image' => '',
+        ]);
+    }
+
+    public function uploadImage(Request $request)
+    {
+        $path = $request->file('file')->store('images', 'public');
+
+        $item = $this->getItem();
+        $item->image = $path;
+        $item->save();
+
+        return redirect()->back();
     }
 }

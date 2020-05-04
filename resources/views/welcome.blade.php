@@ -108,6 +108,16 @@
                 <div>
                     Elapsed Time: {{$item->elapsed_time}} minute.
                 </div>
+
+                <div>
+                    <img src="{{asset('storage/' . $item->image)}}" style="width: 200px;"/>
+                </div>
+
+                <form method="POST" action="{{ action('TopController@uploadImage') }}" enctype="multipart/form-data">
+                    <input type="hidden" name="_token" value="{{csrf_token()}}" />
+                    <input type="file" name="file" />
+                    <button type="submit">送信</button>
+                </form>
             </div>
         </div>
     </body>
