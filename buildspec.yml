@@ -4,9 +4,13 @@ phases:
   install:
     runtime-versions:
       php: 7.3
+      nodejs: 12
   build:
     commands:
       - composer install
+      - npm install
+      - npm run prod
+      - rm -rf node_modules
 artifacts:
   files:
     - '**/*'
