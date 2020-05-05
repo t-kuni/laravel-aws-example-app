@@ -8,9 +8,9 @@ phases:
   build:
     commands:
       - composer install
-#      - npm install
-#      - npm run prod
-#      - rm -rf node_modules
+      - npm install
+      - npm run prod
+      - rm -rf node_modules
 artifacts:
   files:
     - '**/*'
