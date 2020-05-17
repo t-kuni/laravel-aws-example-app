@@ -10,6 +10,7 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <script src="{{ asset('js/app.js') }}" rel="stylesheet"></script>
 
         <!-- Styles -->
         <style>
@@ -123,6 +124,10 @@
 
                 <div class="text">
                     この文字が赤色になっていればフロントのビルド成功
+                </div>
+
+                <div>
+                    <a href="chat">Chat(WebSocketサンプル)</a>
                 </div>
             </div>
         </div>

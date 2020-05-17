@@ -16,3 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'TopController@index');
 Route::post('/', 'TopController@post');
 Route::post('/upload-image', 'TopController@uploadImage');
+
+Route::get('/chat', 'ChatController@index');
+Route::post('/chat/send', 'ChatController@send');
