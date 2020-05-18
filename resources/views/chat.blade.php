@@ -18,5 +18,6 @@
                 <button type="button" onclick="onClickSendMessage()">送信</button>
             </form>
         </div>
+        <div id="message-box"></div>
     </body>
 </html>

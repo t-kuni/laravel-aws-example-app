@@ -28,4 +28,12 @@ class ChatController extends Controller
 
         return [];
     }
+
+    public function list()
+    {
+        return Message::query()
+            ->orderBy('id', 'desc')
+            ->get()
+            ->pluck('body');
+    }
 }

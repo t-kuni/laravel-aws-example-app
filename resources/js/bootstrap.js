@@ -16,8 +16,10 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  * allows your team to easily build robust real-time web applications.
  */
 
+
 import Echo from 'laravel-echo';
 import axios from 'axios';
+import $ from 'jquery';
 
 window.io = require('socket.io-client');
 
@@ -28,6 +30,7 @@ window.Echo = new Echo({
 
 window.Echo.channel('messages')
     .listen('MessageSend', (e) => {
+        updateMessageBox();
         console.log('receive MSG', e);
     });
 
@@ -44,3 +47,38 @@ window.onClickSendMessage = function() {
             console.log('send Fail', error);
         });
 };
+
+
+function render(messages)
+{
+    const messageBox = document.querySelector("#message-box");
+    messageBox.innerHTML = '';
+
+    const root = document.createElement("div");
+
+    messages.forEach((msg) => {
+        const p = document.createElement("p");
+        const content = document.createTextNode(msg);
+        p.appendChild(content);
+        root.appendChild(p);
+    });
+
+    messageBox.appendChild(root);
+}
+
+function updateMessageBox()
+{
+    axios.get('/chat/list')
+        .then(function (response) {
+            render(response.data);
+            console.log('send OK', response);
+
+        })
+        .catch(function (error) {
+            console.log('send Fail', error);
+        });
+}
+
+$(() => {
+    updateMessageBox();
+});

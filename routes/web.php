@@ -18,4 +18,5 @@ Route::post('/', 'TopController@post');
 Route::post('/upload-image', 'TopController@uploadImage');
 
 Route::get('/chat', 'ChatController@index');
+Route::get('/chat/list', 'ChatController@list');
 Route::post('/chat/send', 'ChatController@send');
