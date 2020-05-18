@@ -15,7 +15,7 @@
             <form method="POST" action="/chat/send">
                 <input type="hidden" name="_token" value="{{csrf_token()}}" />
                 <input type="text" name="body">
-                <button type="submit">送信</button>
+                <button type="button" onclick="onClickSendMessage()">送信</button>
             </form>
         </div>
     </body>

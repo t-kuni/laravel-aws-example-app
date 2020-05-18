@@ -18,12 +18,14 @@ class ChatController extends Controller
 
     public function send(Request $request)
     {
+        $body = $request->input('body');
+
         $msg = new Message();
-        $msg->body = $request->input('body');
+        $msg->body = $body;
         $msg->save();
 
-        event(new MessageSend());
+        broadcast(new MessageSend($body));
 
-        return redirect()->back();
+        return [];
     }
 }

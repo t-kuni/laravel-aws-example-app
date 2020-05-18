@@ -17,15 +17,30 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  */
 
 import Echo from 'laravel-echo';
+import axios from 'axios';
 
 window.io = require('socket.io-client');
 
 window.Echo = new Echo({
     broadcaster: 'socket.io',
-    host: window.location.hostname + ':6001'
+    host       : window.location.hostname + ':6001'
 });
 
-window.Echo.channel('messages')
+window.Echo.channel('laravel_database_messages')
     .listen('MessageSend', (e) => {
-        console.log(e.order.name);
+        console.log('receive MSG', e);
     });
+
+window.onClickSendMessage = function() {
+    const body = document.querySelector('input[name=body]').value;
+    console.log(body);
+    axios.post('/chat/send', {
+        body
+    })
+        .then(function (response) {
+            console.log('send OK', response);
+        })
+        .catch(function (error) {
+            console.log('send Fail', error);
+        });
+};

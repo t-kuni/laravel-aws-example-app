@@ -9,9 +9,9 @@
   ],
   "database": "redis",
   "databaseConfig": {
-    "redis": {},
-    "sqlite": {
-      "databasePath": "/database/laravel-echo-server.sqlite"
+    "redis": {
+        "host": "kvs",
+        "keyPrefix": "laravel_database"
     }
   },
   "devMode": true,
