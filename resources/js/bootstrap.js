@@ -26,7 +26,7 @@ window.Echo = new Echo({
     host       : window.location.hostname + ':6001'
 });
 
-window.Echo.channel('laravel_database_messages')
+window.Echo.channel('messages')
     .listen('MessageSend', (e) => {
         console.log('receive MSG', e);
     });

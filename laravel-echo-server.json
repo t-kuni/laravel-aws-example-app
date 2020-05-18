@@ -11,7 +11,7 @@
   "databaseConfig": {
     "redis": {
         "host": "kvs",
-        "keyPrefix": "laravel_database"
+        "keyPrefix": "laravel_database_"
     }
   },
   "devMode": true,
