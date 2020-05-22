@@ -30,7 +30,6 @@ window.Echo = new Echo({
 
 window.Echo.channel('messages')
     .listen('MessageSend', (e) => {
-        updateMessageBox();
         console.log('receive MSG', e);
     });
 
