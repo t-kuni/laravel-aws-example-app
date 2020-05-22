@@ -20,3 +20,6 @@ Route::post('/upload-image', 'TopController@uploadImage');
 Route::get('/chat', 'ChatController@index');
 Route::get('/chat/list', 'ChatController@list');
 Route::post('/chat/send', 'ChatController@send');
+
+Route::get('/subscription', 'SubscriptionController@index');
+Route::post('/subscription/buy', 'SubscriptionController@buy');
