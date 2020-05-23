@@ -129,6 +129,14 @@
                 <div>
                     <a href="chat">Chat(WebSocketサンプル)</a>
                 </div>
+
+                <div>
+                    <a href="users">ユーザ一覧</a>
+                </div>
+
+                <div>
+                    <a href="subscription">Laravel-Cachierサンプル</a>
+                </div>
             </div>
         </div>
     </body>
