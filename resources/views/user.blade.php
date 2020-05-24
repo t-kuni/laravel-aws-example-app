@@ -17,7 +17,8 @@
         </p>
 
         <h1>ユーザ情報</h1>
-        <pre>{{ $stripeCustomer->id }}</pre>
+        <pre>顧客ID: {{ $stripeCustomer->id }}</pre>
+        <pre>カード情報: {{ $paymentMethods[0]->id }}</pre>
 
         <h1>カードの登録</h1>
         <div>

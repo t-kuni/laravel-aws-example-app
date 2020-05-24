@@ -37,11 +37,13 @@ class UserController extends Controller
     public function detail(User $user)
     {
         $stripeCustomer = $user->createOrGetStripeCustomer();
+        $paymentMethods = $user->paymentMethods();
 
         return view('user', [
             'user'           => $user,
             'intent'         => $user->createSetupIntent(),
             'stripeCustomer' => $stripeCustomer,
+            'paymentMethods' => $paymentMethods,
         ]);
     }
 }
