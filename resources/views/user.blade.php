@@ -22,7 +22,7 @@
 
         <h1>カードの登録</h1>
         <div>
-            <form id="card-form" method="POST" action="/users/{{$user->id}}/subscription">
+            <form id="card-form" method="POST" action="/users/{{$user->id}}/cards/create">
                 <input type="hidden" name="_token" value="{{csrf_token()}}" />
                 <input type="hidden" name="payment_method" />
 
@@ -33,6 +33,17 @@
 
                 <button type="button" id="card-button" data-secret="{{ $intent->client_secret }}">
                     保存
+                </button>
+            </form>
+        </div>
+
+        <h1>定期購入</h1>
+        <div>
+            <form method="POST" action="/users/{{$user->id}}/subscriptions/buy">
+                <input type="hidden" name="_token" value="{{csrf_token()}}" />
+
+                <button type="submit">
+                    購入
                 </button>
             </form>
         </div>

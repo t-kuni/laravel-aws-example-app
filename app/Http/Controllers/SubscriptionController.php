@@ -26,13 +26,11 @@ class SubscriptionController extends Controller
         return redirect()->back();
     }
 
-    public function buy(Request $request)
+    public function buy(Request $request, User $user)
     {
-        $userID = $request->input('user_id');
-
-        $user = User::find($userID);
-
-        $user->newSubscription('default', 'premium')->create($paymentMethod);
+        $paymentMethods = $user->paymentMethods();
+        $paymentMethod  = $paymentMethods[0];
+        $user->newSubscription('subscription-A', 'price_HKy9rkkmEs6Bu3')->create($paymentMethod->id);
 
         return redirect()->back();
     }

@@ -27,4 +27,5 @@ Route::post('/chat/send', 'ChatController@send');
 Route::get('/users', 'UserController@index');
 Route::post('/users/create', 'UserController@create');
 Route::get('/users/{user}', 'UserController@detail');
-Route::post('/users/{user}/subscription', 'SubscriptionController@card');
+Route::post('/users/{user}/cards/create', 'SubscriptionController@card');
+Route::post('/users/{user}/subscriptions/buy', 'SubscriptionController@buy');
