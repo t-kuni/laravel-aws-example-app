@@ -43,4 +43,11 @@ class SubscriptionController extends Controller
 
         return redirect()->back();
     }
+
+    public function cancel(Request $request, User $user)
+    {
+        $user->subscription('subscription-A')->cancel();
+
+        return redirect()->back();
+    }
 }

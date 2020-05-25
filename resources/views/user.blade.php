@@ -78,6 +78,21 @@
             @endif
         </div>
 
+        <h1>定期購入解約</h1>
+        <div>
+            @if (!$plansSubscribed->isEmpty())
+                <form method="POST" action="/users/{{$user->id}}/subscriptions/cancel">
+                    <input type="hidden" name="_token" value="{{csrf_token()}}" />
+
+                    <button type="submit">
+                        解約
+                    </button>
+                </form>
+            @else
+                <p>契約無し</p>
+            @endif
+        </div>
+
         <script>
             const stripe = Stripe('pk_test_wiW8iwXGdMRMqbqzzJcw0JQ300IbZKisk3');
 
