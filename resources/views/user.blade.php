@@ -48,9 +48,27 @@
                 <form method="POST" action="/users/{{$user->id}}/subscriptions/buy">
                     <input type="hidden" name="_token" value="{{csrf_token()}}" />
 
-                    <button type="submit">
-                        購入
-                    </button>
+                    <div>
+                        <select name="plan_id">
+                            @foreach ($plansNotSubscribed as $plan)
+                                <option value="{{$plan['id']}}">{{$plan['title']}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div>
+                        個数<input type="number" name="amount" />
+                    </div>
+
+                    <div>
+                        試用期間<input type="number" name="days" />
+                    </div>
+
+                    <div>
+                        <button type="submit">
+                            購入
+                        </button>
+                    </div>
                 </form>
             @else
                 <p>契約済み</p>
@@ -86,6 +104,14 @@
 
                     <button type="submit">
                         解約
+                    </button>
+                </form>
+
+                <form method="POST" action="/users/{{$user->id}}/subscriptions/force-cancel">
+                    <input type="hidden" name="_token" value="{{csrf_token()}}" />
+
+                    <button type="submit">
+                        強制解約
                     </button>
                 </form>
             @else

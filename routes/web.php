@@ -31,3 +31,4 @@ Route::post('/users/{user}/cards/create', 'SubscriptionController@card');
 Route::post('/users/{user}/subscriptions/buy', 'SubscriptionController@buy');
 Route::post('/users/{user}/subscriptions/swap', 'SubscriptionController@swap');
 Route::post('/users/{user}/subscriptions/cancel', 'SubscriptionController@cancel');
+Route::post('/users/{user}/subscriptions/force-cancel', 'SubscriptionController@forceCancel');
