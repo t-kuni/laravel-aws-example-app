@@ -34,4 +34,13 @@ class SubscriptionController extends Controller
 
         return redirect()->back();
     }
+
+    public function swap(Request $request, User $user)
+    {
+        $planId = $request->input('plan_id');
+
+        $user->subscription('subscription-A')->swap($planId);
+
+        return redirect()->back();
+    }
 }

@@ -36,14 +36,38 @@ class UserController extends Controller
 
     public function detail(User $user)
     {
-        $stripeCustomer = $user->createOrGetStripeCustomer();
-        $paymentMethods = $user->paymentMethods();
+        $stripeCustomer     = $user->createOrGetStripeCustomer();
+        $paymentMethods     = $user->paymentMethods();
+        $plans              = collect([
+            [
+                'id'         => 'price_HKy9rkkmEs6Bu3',
+                'title'      => '月額500円',
+                'subscribed' => false,
+            ],
+            [
+                'id'         => 'price_HL0N5ce980quhV',
+                'title'      => '月額1000円',
+                'subscribed' => false,
+            ],
+        ])->map(function ($plan) use ($user) {
+            $plan['subscribed'] = $user->subscribedToPlan([$plan['id']], 'subscription-A');
+            return $plan;
+        });
+        $plansSubscribed    = $plans->filter(function ($plan) {
+            return $plan['subscribed'];
+        });
+        $plansNotSubscribed = $plans->filter(function ($plan) {
+            return !$plan['subscribed'];
+        });
 
         return view('user', [
-            'user'           => $user,
-            'intent'         => $user->createSetupIntent(),
-            'stripeCustomer' => $stripeCustomer,
-            'paymentMethods' => $paymentMethods,
+            'user'               => $user,
+            'intent'             => $user->createSetupIntent(),
+            'stripeCustomer'     => $stripeCustomer,
+            'paymentMethods'     => $paymentMethods,
+            'plans'              => $plans,
+            'plansSubscribed'    => $plansSubscribed,
+            'plansNotSubscribed' => $plansNotSubscribed,
         ]);
     }
 }

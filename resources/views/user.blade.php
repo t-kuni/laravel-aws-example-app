@@ -18,7 +18,12 @@
 
         <h1>ユーザ情報</h1>
         <pre>顧客ID: {{ $stripeCustomer->id }}</pre>
-        <pre>カード情報: {{ $paymentMethods[0]->id }}</pre>
+        <pre>カード情報: {{ $paymentMethods[0]->id ?? null}}</pre>
+        <pre>サブスク:
+            @foreach($plansSubscribed as $plan)
+                {{$plan['title']}},
+            @endforeach
+        </pre>
 
         <h1>カードの登録</h1>
         <div>
@@ -39,13 +44,38 @@
 
         <h1>定期購入</h1>
         <div>
-            <form method="POST" action="/users/{{$user->id}}/subscriptions/buy">
-                <input type="hidden" name="_token" value="{{csrf_token()}}" />
+            @if ($plansSubscribed->isEmpty())
+                <form method="POST" action="/users/{{$user->id}}/subscriptions/buy">
+                    <input type="hidden" name="_token" value="{{csrf_token()}}" />
 
-                <button type="submit">
-                    購入
-                </button>
-            </form>
+                    <button type="submit">
+                        購入
+                    </button>
+                </form>
+            @else
+                <p>契約済み</p>
+            @endif
+        </div>
+
+        <h1>プラン変更</h1>
+        <div>
+            @if (!$plansSubscribed->isEmpty())
+                <form method="POST" action="/users/{{$user->id}}/subscriptions/swap">
+                    <input type="hidden" name="_token" value="{{csrf_token()}}" />
+
+                    <select name="plan_id">
+                        @foreach ($plansNotSubscribed as $plan)
+                            <option value="{{$plan['id']}}">{{$plan['title']}}</option>
+                        @endforeach
+                    </select>
+
+                    <button type="submit">
+                        購入
+                    </button>
+                </form>
+            @else
+                <p>契約無し</p>
+            @endif
         </div>
 
         <script>
