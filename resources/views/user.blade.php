@@ -57,11 +57,11 @@
                     </div>
 
                     <div>
-                        個数<input type="number" name="amount" />
+                        個数<input type="number" name="amount" value="1" />
                     </div>
 
                     <div>
-                        試用期間<input type="number" name="days" />
+                        試用期間<input type="number" name="trial_days" value="0"/>
                     </div>
 
                     <div>

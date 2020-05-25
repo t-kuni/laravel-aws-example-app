@@ -28,9 +28,21 @@ class SubscriptionController extends Controller
 
     public function buy(Request $request, User $user)
     {
+        $planId    = $request->input('plan_id');
+        $quantity  = intval($request->input('amount'));
+        $trialDays = intval($request->input('trial_days', 0));
+
         $paymentMethods = $user->paymentMethods();
         $paymentMethod  = $paymentMethods[0];
-        $user->newSubscription('subscription-A', 'price_HKy9rkkmEs6Bu3')->create($paymentMethod->id);
+
+        $query = $user->newSubscription('subscription-A', $planId)
+            ->quantity($quantity);
+
+        if ($trialDays > 0) {
+            $query->trialDays($trialDays);
+        }
+
+        $query->create($paymentMethod->id);
 
         return redirect()->back();
     }
