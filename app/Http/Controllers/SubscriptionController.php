@@ -31,6 +31,7 @@ class SubscriptionController extends Controller
         $planId    = $request->input('plan_id');
         $quantity  = intval($request->input('amount'));
         $trialDays = intval($request->input('trial_days', 0));
+        $coupon = $request->input('coupon');
 
         $paymentMethods = $user->paymentMethods();
         $paymentMethod  = $paymentMethods[0];
@@ -40,6 +41,10 @@ class SubscriptionController extends Controller
 
         if ($trialDays > 0) {
             $query->trialDays($trialDays);
+        }
+
+        if (!empty($coupon)) {
+            $query->withCoupon($coupon);
         }
 
         $query->create($paymentMethod->id);

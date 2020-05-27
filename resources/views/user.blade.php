@@ -65,6 +65,10 @@
                     </div>
 
                     <div>
+                        クーポン<input type="text" name="coupon" value=""/>
+                    </div>
+
+                    <div>
                         <button type="submit">
                             購入
                         </button>
