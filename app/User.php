@@ -12,6 +12,11 @@ class User extends Authenticatable
     use Notifiable;
     use Billable;
 
+    public function taxRates()
+    {
+        return ['txr_1GnTHZEIX2MLuiQHSIzbe0lN'];
+    }
+
     /**
      * The attributes that are mass assignable.
      *
