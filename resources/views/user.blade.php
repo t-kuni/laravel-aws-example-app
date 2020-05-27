@@ -79,6 +79,23 @@
             @endif
         </div>
 
+        <h1>定期購入(複数プラン)</h1>
+        <div>
+            @if ($plansSubscribed->isEmpty())
+                <form method="POST" action="/users/{{$user->id}}/subscriptions/buy-multi">
+                    <input type="hidden" name="_token" value="{{csrf_token()}}" />
+
+                    <div>
+                        <button type="submit">
+                            複数プラン購入
+                        </button>
+                    </div>
+                </form>
+            @else
+                <p>契約済み</p>
+            @endif
+        </div>
+
         <h1>プラン変更</h1>
         <div>
             @if (!$plansSubscribed->isEmpty())

@@ -52,6 +52,19 @@ class SubscriptionController extends Controller
         return redirect()->back();
     }
 
+    public function buyMulti(Request $request, User $user)
+    {
+        $paymentMethods = $user->paymentMethods();
+        $paymentMethod  = $paymentMethods[0];
+
+        $user->newSubscription('subscription-A', [
+            'price_HKy9rkkmEs6Bu3',
+            'price_HL0N5ce980quhV'
+        ])->create($paymentMethod->id);
+
+        return redirect()->back();
+    }
+
     public function swap(Request $request, User $user)
     {
         $planId = $request->input('plan_id');
