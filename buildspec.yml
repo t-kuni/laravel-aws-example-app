@@ -11,6 +11,7 @@ phases:
       - npm install
       - npm run prod
       - rm -rf node_modules
+      - vendor/bin/phpunit
 artifacts:
   files:
     - '**/*'
