@@ -11,7 +11,12 @@ phases:
       - npm install
       - npm run prod
       - rm -rf node_modules
-      - vendor/bin/phpunit
+      - vendor/bin/phpunit --log-junit /tmp/phpunit-log.xml
+reports:
+  SurefireReports:
+    files:
+      - 'phpunit-log.xml'
+    base-directory: '/tmp'
 artifacts:
   files:
     - '**/*'
