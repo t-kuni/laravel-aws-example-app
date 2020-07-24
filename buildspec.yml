@@ -17,6 +17,7 @@ reports:
     files:
       - 'phpunit-log.xml'
     base-directory: '/tmp'
+    file-format: JunitXml
 artifacts:
   files:
     - '**/*'
