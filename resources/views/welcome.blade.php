@@ -137,6 +137,19 @@
                 <div>
                     <a href="subscription">Laravel-Cachierサンプル</a>
                 </div>
+
+                <div>
+                    <div>キャッシュ： {{$cache}}</div>
+                </div>
+                <form method="POST" action="{{ action('TopController@saveCache') }}">
+                    <input type="hidden" name="_token" value="{{csrf_token()}}" />
+                    <input type="text" name="cache"/>
+                    <button type="submit">キャッシュ保存</button>
+                </form>
+                <form method="POST" action="{{ action('TopController@clearCache') }}">
+                    <input type="hidden" name="_token" value="{{csrf_token()}}" />
+                    <button type="submit">キャッシュクリア</button>
+                </form>
             </div>
         </div>
     </body>

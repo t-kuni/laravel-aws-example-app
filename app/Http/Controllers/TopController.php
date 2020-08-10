@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Storage;
 
 class TopController extends Controller
@@ -13,7 +15,9 @@ class TopController extends Controller
     {
         $item = $this->getItem();
 
-        return view('welcome', compact('item'));
+        $cache = Cache::get('cache', '（キャッシュなし）');
+
+        return view('welcome', compact('item', 'cache'));
     }
 
     public function post(Request $request)
@@ -40,6 +44,20 @@ class TopController extends Controller
         $item = $this->getItem();
         $item->image = $path;
         $item->save();
+
+        return redirect()->back();
+    }
+
+    public function saveCache(Request $request)
+    {
+        Cache::put('cache', $request->input('cache'));
+
+        return redirect()->back();
+    }
+
+    public function clearCache(Request $request)
+    {
+        Cache::forget('cache');
 
         return redirect()->back();
     }
